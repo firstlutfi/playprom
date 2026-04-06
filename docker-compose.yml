@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  statsd-exporter:
+    image: prom/statsd-exporter:latest
+    ports:
+      - "9102:9102" # Prometheus scraping endpoint
+      - "8125:9125/udp" # UDP endpoint where PlayProm sends metrics 
+    command:
+      - "--statsd.listen-udp=:9125"
+
+  prometheus:
+    image: prom/prometheus:latest
+    ports:
+      - "9090:9090" # Prometheus UI
+    volumes:
+      - ./docker/prometheus.yml:/etc/prometheus/prometheus.yml
+    depends_on:
+      - statsd-exporter
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000" # Grafana UI
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    depends_on:
+      - prometheus

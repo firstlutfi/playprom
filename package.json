@@ -1,0 +1,29 @@
+{
+  "name": "@firstlutfi/playprom",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "jest",
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [],
+  "author": "Lutfi Fitroh Hadi",
+  "license": "ISC",
+  "description": "Playwright Test Reporter for StatsD / Prometheus",
+  "dependencies": {
+    "hot-shots": "^14.3.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.59.1",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^25.5.2",
+    "jest": "^30.3.0",
+    "ts-jest": "^29.4.9",
+    "typescript": "^6.0.2"
+  },
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ]
+}
